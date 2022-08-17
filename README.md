@@ -82,7 +82,9 @@ Navigate to:
 Run `$ dotnet restore` in the console.<br>
 Run `$ dotnet database update` in the console.<br>
 Run `$ dotnet run` in the console
+* _To view more information view localhost:{yourlocalhost}/index.html_
 </details>
+
 <br>
 
 This program was built using *`Microsoft .NET SDK 5.0.401`*, and may not be compatible with other versions. Your milage may vary.
