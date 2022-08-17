@@ -82,7 +82,8 @@ Navigate to:
 Run `$ dotnet restore` in the console.<br>
 Run `$ dotnet database update` in the console.<br>
 Run `$ dotnet run` in the console
-* _To view more information view localhost:{yourlocalhost}/index.html_
+* _To view more information view localhost:[yourlocalhost]/index.html_
+* _Additional information in JSon can also be viewed at https://localhost:[yourlocalhost]/swagger/v1/swagger.json
 </details>
 
 <br>

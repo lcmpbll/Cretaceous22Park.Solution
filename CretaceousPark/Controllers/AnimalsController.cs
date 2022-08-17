@@ -19,13 +19,22 @@ namespace CretaceousPark.Solution.Controllers
         {
             _context = context;
         }
-
-        // GET: api/Animals
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Animal>>> GetAnimals()
-        {
-            return await _context.Animals.ToListAsync();
-        }
+        
+  /// <summary>
+  /// Get Operation
+  /// </summary>
+  /// <remarks>
+  /// Sample value of message
+  /// 
+  ///   Returns all current animals
+  ///     
+  /// </remarks>
+  
+        // [HttpGet]
+        // public async Task<ActionResult<IEnumerable<Animal>>> GetAnimals()
+        // {
+        //     return await _context.Animals.ToListAsync();
+        // }
 
         // GET: api/Animals/5
         [HttpGet("{id}")]
@@ -38,6 +47,31 @@ namespace CretaceousPark.Solution.Controllers
                 return NotFound();
             }
             return CreatedAtAction(nameof(GetAnimal), new { id = animal.AnimalId }, animal);
+        }
+        
+        [HttpGet]
+        public async Task<List<Animal>> Get(string species, string gender, string name, int minimumAge)
+        {
+            IQueryable<Animal> query = _context.Animals.AsQueryable();
+            
+            if (species != null)
+            {
+                query = query.Where(entry => entry.Species == species);
+            }
+            if (gender != null)
+            {
+                query = query.Where(entry => entry.Gender == gender);
+            }
+            if (name != null)
+            {
+                query = query.Where(entry => entry.Name == name);
+            }
+            if ( minimumAge > 0)
+            {
+                query = query.Where(entry => entry.Age >= minimumAge);
+            }
+            
+            return await query.ToListAsync();
         }
 
         // PUT: api/Animals/5

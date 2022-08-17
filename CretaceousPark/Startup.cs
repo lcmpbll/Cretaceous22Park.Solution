@@ -43,7 +43,7 @@ namespace CretaceousPark
                     License = new OpenApiLicense
                     {
                         Name = "MIT License",
-                        Url = new Uri("https://opensource.org/licenses/MIT")
+                        Url = new Uri("https://github.com/lcmpbll/Cretaceous22Park.Solution/blob/main/LICENSE")
                     }  
                 });
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
