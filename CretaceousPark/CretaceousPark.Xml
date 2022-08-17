@@ -1,0 +1,21 @@
+/// <summary>
+/// Deletes a specific Animal.
+/// <summary>
+/// <param name="id"></param>
+/// <returns></returns>
+[HttpDelete("{id}")]
+     public async Task<IActionResult> DeleteAnimal(int id)
+        {
+            var animal = await _context.Animals.FindAsync(id);
+            if (animal == null)
+            {
+                return NotFound();
+            }
+
+            _context.Animals.Remove(animal);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        
+        

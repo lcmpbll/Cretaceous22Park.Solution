@@ -4,9 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using System;
+using Microsoft.OpenApi.Models; //add for swagger documentation
+using System;   //Add for swagger documentation
+using System.Reflection; //add for swagger documentation
 using CretaceousPark.Models;
+using System.IO; //Adds definition for path, use to ad swagger documentation
 
 namespace CretaceousPark
 {
@@ -41,9 +43,11 @@ namespace CretaceousPark
                     License = new OpenApiLicense
                     {
                         Name = "MIT License",
-                        Url = new Uri("https://example.com/license")
+                        Url = new Uri("https://opensource.org/licenses/MIT")
                     }  
                 });
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
         }
       
