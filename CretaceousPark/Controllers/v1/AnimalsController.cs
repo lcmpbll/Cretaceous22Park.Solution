@@ -39,7 +39,7 @@ namespace CretaceousPark.Solution.Controllers.v1
         //     return result;
         // }
         
-        [HttpGet("Version")]
+        [HttpGet("Version 1")]
         public IActionResult GetVersion()
         {
             return new OkObjectResult("v1 controller");

@@ -22,8 +22,8 @@ namespace CretaceousPark.Solution.Controllers.v2
     //     _context = context;
     // }
     
-    [HttpGet()]
-    public IActionResult GetVersion2()
+    [HttpGet("Version 2")]
+    public IActionResult Get()
     {
       return new OkObjectResult("this is from v2 controller");
     }
