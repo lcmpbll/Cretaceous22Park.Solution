@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Versioning; //add for versioning
-//using Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer; //add for versioning
+//using Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer; //add for versioning this didn't work but it I did add the package to thhe csproj
 using Microsoft.OpenApi.Models; //add for swagger documentation
 using System;   //Add for swagger documentation
 using System.Reflection; //add for swagger documentation
@@ -36,7 +36,7 @@ namespace CretaceousPark
             services.AddApiVersioning(options => {
                 options.ReportApiVersions = true;
                 options.AssumeDefaultVersionWhenUnspecified =true;
-                // options.DefaultApiVersion = ApiVersion.Default;
+                // options.DefaultApiVersion = ApiVersion.Default; Never got this line to work
                 options.ReportApiVersions = true;
                 options.ApiVersionReader = ApiVersionReader.Combine(
                     new HeaderApiVersionReader("x-api-version"),
