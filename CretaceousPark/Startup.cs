@@ -1,9 +1,14 @@
 using Microsoft.AspNetCore.Builder;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Versioning; //add for versioning
+//using Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer; //add for versioning
 using Microsoft.OpenApi.Models; //add for swagger documentation
 using System;   //Add for swagger documentation
 using System.Reflection; //add for swagger documentation
@@ -28,6 +33,16 @@ namespace CretaceousPark
            services.AddDbContext<CretaceousParkContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
             services.AddControllers();
+            services.AddApiVersioning(options => {
+                options.ReportApiVersions = true;
+                options.AssumeDefaultVersionWhenUnspecified =true;
+                // options.DefaultApiVersion = ApiVersion.Default;
+                options.ReportApiVersions = true;
+                options.ApiVersionReader = ApiVersionReader.Combine(
+                    new HeaderApiVersionReader("x-api-version"),
+                    new MediaTypeApiVersionReader("x-api-version")
+                );
+            });
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo

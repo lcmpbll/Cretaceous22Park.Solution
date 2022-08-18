@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using CretaceousPark.Models;
 
-namespace CretaceousPark.Solution.Controllers
+namespace CretaceousPark.Solution.Controllers.v1
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class AnimalsController : ControllerBase
     {
@@ -31,12 +33,20 @@ namespace CretaceousPark.Solution.Controllers
   /// </remarks>
   
         // [HttpGet]
-        // public async Task<ActionResult<IEnumerable<Animal>>> GetAnimals()
+        // public async Task<List<Animal>> GetAllAnimals()
         // {
-        //     return await _context.Animals.ToListAsync();
+        //      List <Result> result = await _context.Animals.ToListAsync();
+        //     return result;
         // }
+        
+        [HttpGet("Version")]
+        public IActionResult GetVersion()
+        {
+            return new OkObjectResult("v1 controller");
+        }
 
         // GET: api/Animals/5
+       
         [HttpGet("{id}")]
         public async Task<ActionResult<Animal>> GetAnimal(int id)
         {
